@@ -56,6 +56,7 @@ h6 {
 
 :root {
   --red-300: hsl(0, 100%, 74%);
+  --green-300: hsl(154, 59%, 61%);
   --green-400: hsl(154, 59%, 51%);
   --green-500: hsl(154, 59%, 46%);
   --blue-400: hsl(248, 32%, 49%);
@@ -69,12 +70,12 @@ h6 {
 
 body {
   background-image: url('images/bg-intro-mobile.png');
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-position: center;
   background-color: var(--red-300);
   font-family: var(--ff-primary);
 
-  @media (min-width: 800px) {
+  @media (min-width: 900px) {
     background-image: url('images/bg-intro-desktop.png');
   }
 }
@@ -92,15 +93,16 @@ small {
 }
 
 .intro {
-  margin: 0 1.5rem;
+  margin: 6rem 1.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 100dvh;
 
-  @media (min-width: 800px) {
+  @media (min-width: 900px) {
     flex-wrap: nowrap;
+    margin: 0 1.5rem;
+    height: 100dvh;
   }
 }
 
@@ -111,7 +113,9 @@ small {
 }
 
 .intro-summary {
-  @media (min-width: 800px) {
+  flex: 1 1 auto;
+  max-width: 500px;
+  @media (min-width: 900px) {
     max-width: 500px;
     text-align: left;
   }
@@ -121,7 +125,7 @@ small {
   font-size: 1.8rem;
   line-height: 1.2;
 
-  @media (min-width: 800px) {
+  @media (min-width: 900px) {
     font-size: 3rem;
     text-align: left;
   }
@@ -138,7 +142,7 @@ small {
   max-width: 540px;
   flex: 1 1 auto;
 
-  @media (min-width: 800px) {
+  @media (min-width: 900px) {
     margin-left: 4rem;
   }
 }
@@ -175,20 +179,94 @@ small {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
 
-  & > input {
-    padding: 1rem 1rem;
-    border-radius: 5px;
-    border: none;
-    border: solid 1px var(--gray-blue-200);
+.input-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  border: solid 1px var(--gray-blue-200);
+  border-radius: 5px;
 
-    &::placeholder {
-      font-weight: 600;
+  &:focus-within {
+    border: solid 1px black;
+  }
+}
+
+.intro-form-inputs {
+  width: inherit;
+  position: relative;
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  border: solid 1px white;
+  text-indent: 1rem;
+
+  &::placeholder {
+    font-weight: 600;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:is(:invalid:not(:placeholder-shown)) {
+    border: solid 1px red;
+
+    & + span {
+      display: inline-block;
     }
   }
 }
 
+.input-wrapper:has(> #password:invalid:not(:placeholder-shown)),
+.input-wrapper:has(> #lastName:invalid:not(:placeholder-shown)),
+.input-wrapper:has(> #firstName:invalid:not(:placeholder-shown)),
+.input-wrapper:has(> input[type='email']:invalid:not(:placeholder-shown)) {
+  margin-bottom: 1rem;
+
+  &::after {
+    content: 'Password must be at least 8 characters';
+    font-style: italic;
+    position: absolute;
+    display: block;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 0.7rem;
+    color: var(--red-300);
+    bottom: -20px;
+    right: 0;
+  }
+}
+
+.input-wrapper:has(> #firstName:invalid:not(:placeholder-shown)) {
+  &::after {
+    content: 'First Name shorter than two characters';
+  }
+}
+
+.input-wrapper:has(> #lastName:invalid:not(:placeholder-shown)) {
+  &::after {
+    content: 'Last Name shorter than two characters';
+  }
+}
+.input-wrapper:has(> #email:invalid:not(:placeholder-shown)) {
+  &::after {
+    content: 'Looks like this is not an email ';
+  }
+}
+
+.input-error {
+  display: none;
+  background-image: url('images/icon-error.svg');
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
 .intro-form-button {
+  cursor: pointer;
   background-color: var(--green-400);
   border: none;
   border-radius: 5px;
@@ -202,4 +280,8 @@ small {
   -webkit-box-shadow: 0px 4px 0px 0px var(--green-500);
   -moz-box-shadow: 0px 4px 0px 0px var(--green-500);
   box-shadow: 0px 4px 0px 0px var(--green-500);
+
+  &:is(:focus, :hover) {
+    background-color: var(--green-300);
+  }
 }

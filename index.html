@@ -37,34 +37,55 @@
         </div>
         <div class="intro-form-wrapper">
           <form class="intro-form" action="">
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              placeholder="First Name"
-              required
-            />
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Last Name"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email Address"
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              required
-            />
+            <div class="input-wrapper">
+              <input
+                class="intro-form-inputs"
+                type="text"
+                name="firstName"
+                id="firstName"
+                placeholder="First Name"
+                required
+                minlength="2"
+              />
+              <span class="input-error"></span>
+            </div>
+            <div class="input-wrapper">
+              <input
+                class="intro-form-inputs"
+                type="text"
+                name="lastName"
+                id="lastName"
+                placeholder="Last Name"
+                required
+                minlength="2"
+              />
+              <span class="input-error"></span>
+            </div>
+
+            <div class="input-wrapper">
+              <input
+                class="intro-form-inputs"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email Address"
+                required
+              />
+              <span class="input-error"></span>
+            </div>
+            <div class="input-wrapper">
+              <input
+                class="intro-form-inputs"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+                minlength="8"
+              />
+              <span class="input-error"></span>
+            </div>
+
             <button class="intro-form-button" type="submit">
               Claim your free trial
             </button>
